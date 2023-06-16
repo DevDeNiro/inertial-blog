@@ -16,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('users', UserController::class);
+Route::resource('posts', PostController::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('comments', CommentController::class);
+Route::resource('media', MediaController::class);
+Route::resource('tags', TagController::class);
