@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('path');
-            $table->string('type');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->string('action'); // e.g. "created", "updated", "deleted"
+            $table->string('entity_type'); // e.g. "post", "comment"
+            $table->unsignedBigInteger('entity_id'); // ID of the entity that was acted on
+            $table->text('changes')->nullable(); // JSON field that stores the changes made to the entity
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('logs');
     }
 };
