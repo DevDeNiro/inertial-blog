@@ -19,8 +19,9 @@ return new class extends Migration
             $table->dateTime('published_at');
             $table->integer('vues_count');
             $table->string('status')->default('published');
-            $table->string('image');
-            $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade');
+            $table->string('thumbnail')->nullable();
+            $table->string('smallThumbnail')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

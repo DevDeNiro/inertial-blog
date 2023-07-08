@@ -18,12 +18,7 @@ return new class extends Migration
             $table->string('status')->default('published');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('post_id')->constrained()->onDelete('cascade');
-            $table->foreignId('report_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-        });
-
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('comments_count')->default(0);
         });
     }
 
