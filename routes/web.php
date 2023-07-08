@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('index', [
+        'name' => 'Laravel',
+    ]);
 });
 
-Route::resource('users', UserController::class);
-Route::resource('posts', PostController::class);
-Route::resource('categories', CategoryController::class);
-Route::resource('comments', CommentController::class);
-Route::resource('media', MediaController::class);
-Route::resource('tags', TagController::class);
+
+Route::get('/second-link', fn () => 'second link')->name('second');
+
+# Grouping Routes for Admin
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Route::get('/dashboard', function () {
+    //     return Inertia::render('Pages/Admin/Dashboard', [
+    //         'name' => 'Laravel',
+    //     ]);
+    // });
+});
