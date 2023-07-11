@@ -20,9 +20,6 @@ Route::get('/', function () {
     ]);
 });
 
-
-Route::get('/second-link', fn () => 'second link')->name('second');
-
 # Grouping Routes for Admin
 Route::prefix('admin')->name('admin.')->group(function () {
     // Route::get('/dashboard', function () {

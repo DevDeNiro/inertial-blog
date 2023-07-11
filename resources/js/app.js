@@ -1,4 +1,4 @@
-import { createApp, h } from "vue";
+import { createSSRApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { InertiaProgress } from "@inertiajs/progress";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
@@ -11,9 +11,9 @@ createInertiaApp({
             `./Pages/${name}.vue`,
             import.meta.glob("./Pages/**/*.vue")
         ),
+    title: (title) => (title ? `${title} - Blog` : "Blog"),
     setup({ el, App, props, plugin }) {
-        return createApp({ render: () => h(App, props) })
-            .mixin({ methods: { route } })
+        createSSRApp({ render: () => h(App, props) })
             .use(plugin)
             .mount(el);
     },
