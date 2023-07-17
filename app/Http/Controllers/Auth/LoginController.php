@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class LoginController extends Controller
@@ -24,6 +25,8 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended('');
+            // return redirect()->redirect('home');
+
         }
 
         return back()->withErrors([
